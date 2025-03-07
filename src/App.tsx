@@ -1,13 +1,9 @@
 import './App.css'
-import { Layout } from './Components/Layout'
+import { AppRoutes } from './Services/AppRoutes'
 
 function App() {
   
-  return (
-    <>
-      <Layout/>
-    </>
-  )
+  return <AppRoutes/>
 }
 
 export default App
