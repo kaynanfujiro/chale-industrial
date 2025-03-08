@@ -3,14 +3,14 @@
       "Id": 1,
       "Name": "Chalé Industrial 1.0",
       "Description": "Um lindo chalé com vista para a montanha.",
-      "Image": "https://example.com/chale1.jpg",
+      "Image": "../../public/images/Chale-01.png",
       "Value": 350
     },
     {
       "Id": 2,
-      "Name": "Chalé Industrial 1.0",
+      "Name": "Chalé Industrial 2.0",
       "Description": "Chalé aconchegante ao lado do lago.",
-      "Image": "https://example.com/chale2.jpg",
+      "Image": "../../public/images/Chale-02.png",
       "Value": 450
     }
   ]
