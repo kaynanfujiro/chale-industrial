@@ -8,10 +8,10 @@ export const Header = () => {
             <div className="flex justify-between items-center p-4 border-b">
 
                 <div className='flex justify-center items-center gap-2'>
-                    <a href="#" className="hover:shadow-2xl transition-shadow duration-300">
+                    <a href="/" className="hover:shadow-2xl hover:rounded-xl transition-shadow duration-300">
                         <img src={ChaleIcon} alt="Chale Icon" className="h-15 rounded-lg" />
                     </a>
-                    <p className='text-xl font-mono'>Grupo Industrial</p>
+                    <p className='text-xl font-mono hover:font-bold'>Grupo Industrial</p>
                 </div>
 
                 <div className="flex space-x-4">
