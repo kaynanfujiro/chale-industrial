@@ -3,14 +3,14 @@
       "Id": 1,
       "Name": "Chalé Industrial 1.0",
       "Description": "Um lindo chalé com vista para a montanha.",
-      "ImageP": "/images/chalet-01.jpeg",
+      "ImageP": "/public/public/images/chalet-01.jpeg",
       "Images": [
-        "/images/chalet-01-01.jpeg",
-        "/images/chalet-01-02.jpeg",
-        "/images/chalet-01-03.jpeg",
-        "/images/chalet-01-04.jpeg",
-        "/images/chalet-01-05.jpeg",
-        "/images/chalet-01-06.jpeg"
+        "/public/images/chalet-01-01.jpeg",
+        "/public/images/chalet-01-02.jpeg",
+        "/public/images/chalet-01-03.jpeg",
+        "/public/images/chalet-01-04.jpeg",
+        "/public/images/chalet-01-05.jpeg",
+        "/public/images/chalet-01-06.jpeg"
       ],
       "Video": "/videos/CHALET-01.mp4",
       "Value": 350
@@ -19,16 +19,16 @@
       "Id": 2,
       "Name": "Chalé Industrial 2.0",
       "Description": "Chalé aconchegante ao lado do lago.",
-      "ImageP": "/images/chalet-02.jpeg",
+      "ImageP": "/public/images/chalet-02.jpeg",
       "Images": [
-        "/images/chalet-02-01.jpeg",
-        "/images/chalet-02-02.jpeg",
-        "/images/chalet-02-03.jpeg",
-        "/images/chalet-02-04.jpeg",
-        "/images/chalet-02-05.jpeg",
-        "/images/chalet-02-06.jpeg"
+        "/public/images/chalet-02-01.jpeg",
+        "/public/images/chalet-02-02.jpeg",
+        "/public/images/chalet-02-03.jpeg",
+        "/public/images/chalet-02-04.jpeg",
+        "/public/images/chalet-02-05.jpeg",
+        "/public/images/chalet-02-06.jpeg"
       ],
-      "Video": "/videos/CHALET-02.mp4",
+      "Video": "/public/videos/CHALET-02.mp4",
       "Value": 450
     }
   ]
