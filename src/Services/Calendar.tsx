@@ -1,3 +1,4 @@
+import { pt } from "date-fns/locale";
 import { useState } from "react";
 import { DateRange, RangeKeyDict, Range } from "react-date-range";
 import "react-date-range/dist/styles.css";
@@ -33,6 +34,7 @@ const Calendar: React.FC<CalendarProps> = ({ onDateChange }) => {
         onChange={handleChange}
         minDate={new Date()}
         rangeColors={["#FF5A5F"]}
+        locale={pt}
       />
     </div>
   );
