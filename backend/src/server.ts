@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
-import alugueisRoutes from "./routes/alugueis.routes";
-import chaletRoutes from "./routes/chalet.routes";
 import dotenv from "dotenv";
 import path from "path";
+import alugueisRoutes from "./routes/alugueis.routes";
+import chaletRoutes from "./routes/chalet.routes";
+import userRoutes from "./routes/user.routes"; // Importando a rota de usuário
 
 dotenv.config();
 
@@ -24,15 +25,16 @@ app.get("/", (req, res) => {
   res.send("Servidor rodando!");
 });
 
+app.get("/user", (req, res) => {
+  res.send("Servidor rodando!");
+});
+
 app.use("/images", express.static(path.join(__dirname, "../public/images")));
 
-// Rota para aluguéis
+//Rotas
+app.use("/user", userRoutes);
 app.use("/alugueis", alugueisRoutes);
-
-// Rota para chales
 app.use("/chalets", chaletRoutes);
-
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
