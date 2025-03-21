@@ -5,6 +5,7 @@ import { ChaletDetails } from "../Components/Body/ChaletDetails";
 import { Login } from "../Components/Login/Login";
 import { RegisterChale } from "../Components/RegisterChale/RegisterChale";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { AdminPainel } from "../Components/Body/AdminPainel/AdminPainel";
 
 export const AppRoutes = () => {
     return (
@@ -17,6 +18,12 @@ export const AppRoutes = () => {
                     <Route path="/RegisterChale" 
                     element={<ProtectedRoute>
                                 <RegisterChale/>
+                            </ProtectedRoute>
+                            }
+                        />  
+                    <Route path="/AdminPainel" 
+                    element={<ProtectedRoute>
+                                <AdminPainel/>
                             </ProtectedRoute>
                             }
                         />  

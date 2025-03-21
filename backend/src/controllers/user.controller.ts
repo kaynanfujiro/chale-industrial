@@ -14,7 +14,7 @@ export const login = async (req: Request, res: Response) => {
 
     try {
         // Buscar usuário pelo username
-        const user = await prisma.useradmin.findFirst({
+        const user = await prisma.userAdmin.findFirst({
             where: { username },
         });
 

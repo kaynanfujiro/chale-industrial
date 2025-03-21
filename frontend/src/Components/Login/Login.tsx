@@ -27,7 +27,7 @@ export const Login = () => {
                 
                 console.log("Login bem-sucedido:", data.token);
                 localStorage.setItem("token", data.token); 
-                window.location.href = "/dashboard";
+                window.location.href = "/adminpainel";
             } else {
                 
                 setError(data.message || "Erro ao fazer login");

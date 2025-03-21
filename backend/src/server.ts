@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 import path from "path";
 import alugueisRoutes from "./routes/alugueis.routes";
 import chaletRoutes from "./routes/chalet.routes";
-import userRoutes from "./routes/user.routes"; // Importando a rota de usuário
+import userRoutes from "./routes/user.routes";
+import reservaRoutes from "./routes/reservas.routes"; // Corrigindo a importação
 
 dotenv.config();
 
@@ -21,20 +22,18 @@ app.use(
 app.use(express.json());
 
 // Rota para a raiz (/)
-app.get("/", (req, res) => {
-  res.send("Servidor rodando!");
-});
-
-app.get("/user", (req, res) => {
+app.get("/", (_req, res) => {
   res.send("Servidor rodando!");
 });
 
 app.use("/images", express.static(path.join(__dirname, "../public/images")));
+app.use("/videos", express.static(path.join(__dirname, "../public/videos")));
 
-//Rotas
+// Rotas principais
 app.use("/user", userRoutes);
 app.use("/alugueis", alugueisRoutes);
 app.use("/chalets", chaletRoutes);
+app.use("/AdminPainel", reservaRoutes); // Corrigindo a rota
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
