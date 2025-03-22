@@ -1,5 +1,5 @@
 import { FormEvent, useState, useRef } from "react"
-import { LabelChale } from "./LabelChale"
+import { LabelPadrao } from "./LabelPadrao"
 
 export const RegisterChale = () =>{
 
@@ -85,7 +85,7 @@ export const RegisterChale = () =>{
                     <div className="flex flex-row items-start gap-5">
                         <div className="flex flex-col">
 
-                            <LabelChale>Nome:</LabelChale>
+                            <LabelPadrao>Nome:</LabelPadrao>
                             <input className="w-[300px] shadow-xl border-solid border-2 border-black rounded-md p-1 hover:border-gray-500" 
                             type="text" 
                             placeholder="Digite o nome do local..."
@@ -93,7 +93,7 @@ export const RegisterChale = () =>{
                             onChange={(e) => setName(e.target.value)}
                             />
 
-                            <LabelChale>Descrição:</LabelChale>
+                            <LabelPadrao>Descrição:</LabelPadrao>
                             <input className="w-[300px] shadow-xl border-solid border-2 border-black rounded-md p-1 hover:border-gray-500"  
                             type="text" 
                             placeholder="Digite uma descrição do local"
@@ -101,7 +101,7 @@ export const RegisterChale = () =>{
                             onChange={(e) => setDescription(e.target.value)}
                             />
 
-                            <LabelChale>Tipo:</LabelChale>
+                            <LabelPadrao>Tipo:</LabelPadrao>
                             <input className="w-[300px] shadow-xl border-solid border-2 border-black rounded-md p-1 hover:border-gray-500"  
                             type="text" 
                             placeholder="Digite que tipo de local é (ex: Chale)"
@@ -109,7 +109,7 @@ export const RegisterChale = () =>{
                             onChange={(e) => setType(e.target.value)}
                             />
 
-                            <LabelChale>Valor de Alugel:</LabelChale>
+                            <LabelPadrao>Valor de Alugel:</LabelPadrao>
                             <input className="w-[300px] shadow-xl border-solid border-2 border-black rounded-md p-1 hover:border-gray-500"  
                             type="number" 
                             placeholder="Digite o valor de aluguel"
@@ -121,7 +121,7 @@ export const RegisterChale = () =>{
 
                         <div className="flex flex-col">
 
-                            <LabelChale>Imagens Principal:</LabelChale>
+                            <LabelPadrao>Imagens Principal:</LabelPadrao>
                             <input className="block w-full mb-5 text-xs text-gray-900 border
                              border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
                              id="small_size" 
@@ -130,7 +130,7 @@ export const RegisterChale = () =>{
                              onChange={(e) => setImagemP(e.target.files?.[0] || null)}
                              />
 
-                            <LabelChale>Imagens Gerais:</LabelChale>
+                            <LabelPadrao>Imagens Gerais:</LabelPadrao>
                             <input className="block w-full mb-5 text-xs text-gray-900 border
                              border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
                              id="small_size" 
@@ -141,7 +141,7 @@ export const RegisterChale = () =>{
                              }
                              />
 
-                            <LabelChale>Video:</LabelChale>
+                            <LabelPadrao>Video:</LabelPadrao>
                             <input className="block w-full mb-5 text-xs text-gray-900 border
                              border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
                              id="small_size" 

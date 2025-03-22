@@ -1,6 +1,5 @@
-// ChaletRes.tsx
 import { ChaletData } from "../Body/ChaletData";
-import ReservationButton from "../../Services/ReservationButton"; // Importando o novo componente
+import { ReservationForms } from "../../Services/ReservationForms";
 
 interface ChaletResProps {
     chale: ChaletData;
@@ -8,21 +7,10 @@ interface ChaletResProps {
     days: number;
     checkIn: Date | null;
     checkOut: Date | null;
+    aluguelId: number; // Adicione aluguelId como prop
 }
 
-export const ChaletRes: React.FC<ChaletResProps> = ({ chale, totalPrice, days, checkIn, checkOut }) => {
-    const generateWhatsAppMessage = () => {
-        const checkInFormatted = checkIn ? checkIn.toLocaleDateString("pt-BR") : "não selecionada";
-        const checkOutFormatted = checkOut ? checkOut.toLocaleDateString("pt-BR") : "não selecionada";
-        
-        return `Olá! Gostaria de reservar o chalé ${chale.name}
-        *Período da Reserva*\n 
-        Check-In: *${checkInFormatted}*\n 
-        Check-Out: *${checkOutFormatted}*\n 
-        *O valor total da reserva:* R$ ${totalPrice.toLocaleString("pt-BR")}\n\n
-        Aguardo mais informações!`;
-    };
-
+export const ChaletRes: React.FC<ChaletResProps> = ({ chale, totalPrice, days, checkIn, checkOut, aluguelId }) => {
     return (
         <div className="flex flex-col justify-center items-start border rounded-lg shadow-lg h-auto w-full max-w-[400px] p-6 bg-white hover:shadow-xl transition-shadow duration-300">
             {/* Cabeçalho do Card */}
@@ -43,12 +31,17 @@ export const ChaletRes: React.FC<ChaletResProps> = ({ chale, totalPrice, days, c
                         </p>
                     </div>
                 )}
-    
-                {/* Botão de Reserva */}
+
                 <div className="w-full mt-2">
-                    <ReservationButton message={generateWhatsAppMessage()} />
+                    <ReservationForms 
+                        startDate={checkIn} 
+                        endDate={checkOut} 
+                        aluguelId={aluguelId} // Passa o aluguelId
+                        chale={chale} // Passa os dados do chalé
+                        totalPrice={totalPrice} // Passa o preço total
+                    />
                 </div>
-    
+
                 {/* Mensagem de Aviso */}
                 <p className="text-center text-sm text-gray-500 mt-2">
                     Você ainda não será cobrado

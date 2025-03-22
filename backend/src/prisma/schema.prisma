@@ -7,6 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Aluguel {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  imageP      String
+  images      String[]
+  video       String
+  value       Int
+  type        String
+  Reservas    Reservas[]
+}
+
 model Reservas {
   id        Int      @id @default(autoincrement())
   name      String
@@ -17,26 +29,14 @@ model Reservas {
   status    Status   @default(PENDING)
   createdAt DateTime @default(now()) @db.Timestamp(6)
   aluguelId Int
-  aluguel   aluguel  @relation(fields: [aluguelId], references: [id])
+  Aluguel   Aluguel  @relation(fields: [aluguelId], references: [id])
 }
 
-model aluguel {
-  id          Int        @id(map: "Aluguel_pkey") @default(autoincrement())
-  name        String
-  description String
-  imageP      String
-  images      String[]
-  video       String
-  value       Int
-  type        String
-  reservas    Reservas[]
-}
-
-model useradmin {
-  id       Int    @id(map: "UserAdmin_pkey") @default(autoincrement())
-  username String
+model UserAdmin {
+  id       Int    @id @default(autoincrement())
+  username     String
   password String
-  email    String @unique(map: "UserAdmin_email_key")
+  email    String @unique
 }
 
 enum Status {

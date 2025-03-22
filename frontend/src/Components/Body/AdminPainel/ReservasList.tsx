@@ -13,7 +13,7 @@ export const ReservasList = () => {
     useEffect(() => {
         const fetchReservas = async () => {
             try {
-                const response = await api.get("/AdminPainel");
+                const response = await api.get("/reservas");
                 setReservas(response.data);
             } catch (error) {
                 console.error("Erro ao buscar chalés:", error);

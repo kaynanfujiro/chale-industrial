@@ -33,7 +33,7 @@ app.use("/videos", express.static(path.join(__dirname, "../public/videos")));
 app.use("/user", userRoutes);
 app.use("/alugueis", alugueisRoutes);
 app.use("/chalets", chaletRoutes);
-app.use("/AdminPainel", reservaRoutes); // Corrigindo a rota
+app.use("/reservas", reservaRoutes); // Corrigindo a rota
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));

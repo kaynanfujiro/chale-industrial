@@ -4,11 +4,11 @@ const prisma = new PrismaClient();
 
 async function revertPasswords() {
     try {
-        const users = await prisma.useradmin.findMany();
+        const users = await prisma.userAdmin.findMany();
 
         for (const user of users) {
             // Atualiza a senha para texto simples (substitua "senha_padrao" pela senha desejada)
-            await prisma.useradmin.update({
+            await prisma.userAdmin.update({
                 where: { id: user.id },
                 data: { password: "senha_padrao" }, // Defina a senha em texto simples
             });

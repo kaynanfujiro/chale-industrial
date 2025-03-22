@@ -7,6 +7,7 @@ export const AdminPainel = () => {
     return(
         <>
         <div className="flex flex-col m-3 p-2 gap-4 justify-center items-center">
+            <div><a href="RegisterChale">Tset</a></div>
             <div>
                 <h1 className="text-2xl font-bold">Painel Admin</h1>
             </div>
