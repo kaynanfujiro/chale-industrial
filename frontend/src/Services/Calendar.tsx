@@ -6,25 +6,25 @@ import "react-date-range/dist/theme/default.css";
 
 interface CalendarProps {
   onDateChange: (startDate: Date | undefined, endDate: Date | undefined) => void;
+  reservedDates: { startDate: Date; endDate: Date }[]; // Recebe as datas reservadas
 }
 
-const Calendar: React.FC<CalendarProps> = ({ onDateChange }) => {
+const Calendar: React.FC<CalendarProps> = ({ onDateChange, reservedDates }) => {
   const [selection, setSelection] = useState<Range[]>([
     {
-      startDate: new Date(),  // Inicializa com uma data válida
-      endDate: undefined,     // Mantenha como undefined para seguir o tipo esperado
+      startDate: new Date(),
+      endDate: undefined,
       key: "selection",
     },
   ]);
 
   const handleChange = (ranges: RangeKeyDict) => {
     const { startDate, endDate } = ranges.selection;
-    // Converte null para undefined, que é o que a interface espera
-    const validStartDate = startDate ?? undefined;  // Usando null coalescing para tratar null
-    const validEndDate = endDate ?? undefined;      // Usando null coalescing para tratar null
-    
+    const validStartDate = startDate ?? undefined;
+    const validEndDate = endDate ?? undefined;
+
     setSelection([{ ...selection[0], startDate: validStartDate, endDate: validEndDate }]);
-    onDateChange(validStartDate, validEndDate);  // Passando valores corretamente para onDateChange
+    onDateChange(validStartDate, validEndDate);
   };
 
   return (
@@ -35,6 +35,15 @@ const Calendar: React.FC<CalendarProps> = ({ onDateChange }) => {
         minDate={new Date()}
         rangeColors={["#FF5A5F"]}
         locale={pt}
+        disabledDates={reservedDates.flatMap((reserved) => {
+          const disabledDays = [];
+          let currentDate = new Date(reserved.startDate);
+          while (currentDate <= reserved.endDate) {
+            disabledDays.push(new Date(currentDate));
+            currentDate.setDate(currentDate.getDate() + 1);
+          }
+          return disabledDays;
+        })}
       />
     </div>
   );

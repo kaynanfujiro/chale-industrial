@@ -97,6 +97,7 @@ export const ReservationForms = ({ startDate, endDate, aluguelId, chale, totalPr
                         placeholder="Ex: 1999987444"
                         value={number}
                         onChange={(e) => setNumber(e.target.value)}
+                        maxLength={11}
                     />
 
                     <LabelPadrao>E-mail</LabelPadrao>

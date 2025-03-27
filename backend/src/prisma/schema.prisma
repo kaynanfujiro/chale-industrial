@@ -26,7 +26,7 @@ model Reservas {
   email     String
   startDate DateTime @db.Timestamp(6)
   endDate   DateTime @db.Timestamp(6)
-  status    Status   @default(PENDING)
+  status    Status   @default(PENDENTE)
   createdAt DateTime @default(now()) @db.Timestamp(6)
   aluguelId Int
   Aluguel   Aluguel  @relation(fields: [aluguelId], references: [id])
@@ -34,13 +34,13 @@ model Reservas {
 
 model UserAdmin {
   id       Int    @id @default(autoincrement())
-  username     String
+  username String
   password String
   email    String @unique
 }
 
 enum Status {
-  PENDING
-  APPROVED
-  REJECTED
+  PENDENTE
+  APROVADO
+  REPROVADO
 }

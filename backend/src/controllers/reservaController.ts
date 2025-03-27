@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../config/prisma";
 
 // Criar reserva
 export const createReserva = async (req: Request, res: Response): Promise<void> => {
@@ -12,10 +10,10 @@ export const createReserva = async (req: Request, res: Response): Promise<void> 
       data: { name, number, email, startDate, endDate, aluguelId },
     });
 
-    res.status(201).json(reserva);
+    res.status(201).json(reserva); // Retorna a reserva criada
   } catch (error) {
     console.error("Erro ao criar reserva:", error);
-    res.status(500).json({ error: "Erro ao criar reserva" });
+    res.status(500).json({ message: "Erro ao criar reserva" });
   }
 };
 
@@ -23,10 +21,30 @@ export const createReserva = async (req: Request, res: Response): Promise<void> 
 export const getReservas = async (req: Request, res: Response): Promise<void> => {
   try {
     const reservas = await prisma.reservas.findMany();
-    res.status(200).json(reservas);
+    res.json(reservas); // Retorna a lista de reservas
   } catch (error) {
     console.error("Erro ao buscar reservas:", error);
-    res.status(500).json({ error: "Erro ao buscar reservas" });
+    res.status(500).json({ message: "Erro ao buscar reservas" });
+  }
+};
+
+// Buscar uma reserva por ID
+export const getReservaById = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const reserva = await prisma.reservas.findUnique({
+      where: { id: Number(id) }, // Converte o id para número
+    });
+
+    if (!reserva) {
+      res.status(404).json({ message: "Reserva não encontrada" });
+      return;
+    }
+
+    res.json(reserva); // Retorna a reserva encontrada
+  } catch (error) {
+    console.error("Erro ao buscar reserva:", error);
+    res.status(500).json({ message: "Erro ao buscar reserva" });
   }
 };
 
@@ -36,8 +54,9 @@ export const updateReservaStatus = async (req: Request, res: Response): Promise<
     const { id } = req.params;
     const { status } = req.body;
 
-    if (!["APROVAR", "RECUSAR"].includes(status)) {
-      res.status(400).json({ error: "Status inválido" });
+    // Valida se o status é válido
+    if (!["APROVADO", "REPROVADO"].includes(status)) {
+      res.status(400).json({ message: "Status inválido" });
       return;
     }
 
@@ -46,9 +65,9 @@ export const updateReservaStatus = async (req: Request, res: Response): Promise<
       data: { status },
     });
 
-    res.status(200).json(reservaAtualizada);
+    res.json(reservaAtualizada); // Retorna a reserva atualizada
   } catch (error) {
     console.error("Erro ao atualizar reserva:", error);
-    res.status(500).json({ error: "Erro ao atualizar reserva" });
+    res.status(500).json({ message: "Erro ao atualizar reserva" });
   }
 };
