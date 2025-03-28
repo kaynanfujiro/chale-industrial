@@ -20,7 +20,22 @@ export const createReserva = async (req: Request, res: Response): Promise<void> 
 // Listar reservas
 export const getReservas = async (req: Request, res: Response): Promise<void> => {
   try {
-    const reservas = await prisma.reservas.findMany();
+    const { aluguelId } = req.query;
+    
+    let reservas;
+    
+    if (aluguelId) {
+      // Se tiver aluguelId, filtra por ele
+      reservas = await prisma.reservas.findMany({
+        where: { 
+          aluguelId: Number(aluguelId) 
+        }
+      });
+    } else {
+      // Caso contrário, retorna todas as reservas
+      reservas = await prisma.reservas.findMany();
+    }
+    
     res.json(reservas); // Retorna a lista de reservas
   } catch (error) {
     console.error("Erro ao buscar reservas:", error);

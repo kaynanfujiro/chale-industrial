@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "../../api"; // Importando o api para fazer as requisições
-import { ChaletData } from "./ChaletData"; // Supondo que você tenha a interface ChaletData para descrever as informações do chalé
-import Calendar from "../../Services/Calendar"; // Importando o componente Calendar para exibir o calendário
-import { ChaletRes } from "./ChaletRes"; // Componente que mostra o resumo da reserva
-import { VideoModal } from "../../Services/VideoModal"; // Para abrir o modal do vídeo
-import { FaVideo } from "react-icons/fa"; // Ícone de vídeo para o botão
+import { api } from "../../api";
+import { ChaletData } from "./ChaletData";
+import Calendar from "../../Services/Calendar";
+import { ChaletRes } from "./ChaletRes";
+import { VideoModal } from "../../Services/VideoModal";
+import { FaVideo } from "react-icons/fa";
 
 export const ChaletDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,21 +36,41 @@ export const ChaletDetails = () => {
     // Busca as reservas específicas do chalé
     const fetchReservas = async () => {
       try {
-        // Passando o aluguelId para filtrar as reservas
-        const response = await api.get(`/reservas?aluguelId=${id}`);
-        setReservedDates(
-          response.data.map((reserva: any) => ({
-            startDate: new Date(reserva.startDate),
-            endDate: new Date(reserva.endDate),
-          }))
+        console.log(`Buscando reservas para o aluguel ID: ${id}`);
+        
+        // Importante: certifique-se de que está filtrando pelo aluguelId correto
+        const response = await api.get(`/reservas`, {
+          params: {
+            aluguelId: id
+          }
+        });
+        
+        console.log("Reservas encontradas:", response.data);
+        
+        // Filtra para pegar apenas as reservas APROVADAS
+        const approvedReservations = response.data.filter(
+          (reserva: any) => reserva.status === "APROVADO"
         );
+        
+        console.log("Reservas aprovadas:", approvedReservations);
+        
+        // Converte as datas para objetos Date
+        const datesArray = approvedReservations.map((reserva: any) => ({
+          startDate: new Date(reserva.startDate),
+          endDate: new Date(reserva.endDate),
+        }));
+        
+        console.log("Datas reservadas processadas:", datesArray);
+        setReservedDates(datesArray);
       } catch (error) {
         console.error("Erro ao buscar reservas do chalé:", error);
       }
     };
 
-    fetchChalet();
-    fetchReservas();
+    if (id) {
+      fetchChalet();
+      fetchReservas();
+    }
   }, [id]);
 
   // Calcula a quantidade de dias entre o check-in e check-out
