@@ -16,7 +16,7 @@ export const ReservationForms = ({ startDate, endDate, aluguelId, chale, totalPr
     const [email, setEmail] = useState("");
 
     const whatsappNumber = "19996104456"; // Número do WhatsApp
-    const url = "http://localhost:3000";
+    const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"
 
     const generateWhatsAppMessage = () => {
         const checkInFormatted = startDate ? startDate.toLocaleDateString("pt-BR") : "não selecionada";
