@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "../../api";
+import { api, BASE_URL } from "../../api";
 import { ChaletData } from "./ChaletData";
 import Calendar from "../../Services/Calendar";
 import { ChaletRes } from "./ChaletRes";
@@ -17,8 +17,6 @@ export const ChaletDetails = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [reservedDates, setReservedDates] = useState<{ startDate: Date; endDate: Date }[]>([]);
-
-  const Url = "http://localhost:3000";
 
   // Busca os detalhes do chalé
   useEffect(() => {
@@ -94,14 +92,14 @@ export const ChaletDetails = () => {
       <div className="flex flex-col items-start p-4 w-full">
         <h1 className="text-3xl font-bold mb-4">{chale.name}</h1>
         <div className="flex flex-col md:flex-row gap-4 items-center">
-          <img className="rounded-lg w-full md:w-[400px] h-[300px]" src={`${Url}${chale.imageP}`} alt={chale.name} />
+          <img className="rounded-lg w-full md:w-[400px] h-[300px]" src={`${BASE_URL}${chale.imageP}`} alt={chale.name} />
           <div className="grid grid-cols-3 gap-4">
             {chale.images.slice(0, 6).map((image, index) => (
               <img
                 key={index}
                 className="rounded-lg w-[200px] h-[150px] object-cover cursor-pointer hover:opacity-75"
-                src={`${Url}${image}`}
-                onClick={() => handleModal(`${Url}${image}`)}
+                src={`${BASE_URL}${image}`}
+                onClick={() => handleModal(`${BASE_URL}${image}`)}
                 alt={`Imagem ${index + 1} de ${chale.name}`}
               />
             ))}

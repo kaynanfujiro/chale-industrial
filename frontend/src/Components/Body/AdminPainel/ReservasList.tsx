@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api } from "../../../api";
+import { api, BASE_URL } from "../../../api";
 import { ReservasData } from "./ReservasData";
 
 export const ReservasList = () => {
@@ -13,11 +13,9 @@ export const ReservasList = () => {
   const [startDateFilter, setStartDateFilter] = useState("");
   const [endDateFilter, setEndDateFilter] = useState("");
 
-  const url = "http://localhost:3000/reservas";
-
   const updateStatus = async (id: number, status: "APROVADO" | "REPROVADO") => {
     try {
-      await api.patch(`${url}/${id}`, { status }); 
+      await api.patch(`${BASE_URL}/${id}`, { status }); 
       const updatedReservas = reservas.map((reserva) =>
         reserva.id === id ? { ...reserva, status } : reserva
       );
@@ -71,7 +69,7 @@ export const ReservasList = () => {
   useEffect(() => {
     const fetchReservas = async () => {
       try {
-        const response = await api.get(url);
+        const response = await api.get(BASE_URL);
         setReservas(response.data);
         setFilteredReservas(response.data);
       } catch (error) {

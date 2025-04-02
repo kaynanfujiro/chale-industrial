@@ -7,9 +7,13 @@ export const AdminPainel = () => {
     return(
         <>
         <div className="flex">
-            <div className="w-[15%] p-5">
+            <div className="w-[15%] p-5 flex flex-col gap-3">
                 <button className="border-solid border-2 font-bold text-gray-600 border-gray-500 shadow-lg bg-gray-100 hover:shadow-2xl hover:text-gray-800">
                     <a href="/RegisterChale">Cadastro de Alugueis</a>
+                </button>
+                
+                <button className="border-solid border-2 font-bold text-gray-600 border-gray-500 shadow-lg bg-gray-100 hover:shadow-2xl hover:text-gray-800">
+                    <a href="/EditChale">Editar Info. Alugueis</a>
                 </button>
             </div>
             <div className="flex flex-col m-3 p-2 gap-4 justify-center items-center">
