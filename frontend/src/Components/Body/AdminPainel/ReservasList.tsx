@@ -15,7 +15,7 @@ export const ReservasList = () => {
 
   const updateStatus = async (id: number, status: "APROVADO" | "REPROVADO") => {
     try {
-      await api.patch(`${BASE_URL}/${id}`, { status }); 
+      await api.patch(`${BASE_URL}/reservas/${id}`, { status }); 
       const updatedReservas = reservas.map((reserva) =>
         reserva.id === id ? { ...reserva, status } : reserva
       );
@@ -69,7 +69,7 @@ export const ReservasList = () => {
   useEffect(() => {
     const fetchReservas = async () => {
       try {
-        const response = await api.get(BASE_URL);
+        const response = await api.get(`${BASE_URL}/reservas`);
         setReservas(response.data);
         setFilteredReservas(response.data);
       } catch (error) {
