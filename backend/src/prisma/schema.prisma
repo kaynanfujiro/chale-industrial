@@ -3,40 +3,42 @@ generator client {
 }
 
 datasource db {
-  provider = "postgres"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model Aluguel {
   id          Int        @id @default(autoincrement())
-  name        String
-  description String
-  imageP      String
-  images      String[]
-  video       String
+  name        String     @db.VarChar(255)
+  description String     @db.Text
+  imageP      String     @db.VarChar(255)
+  images      String     @db.LongText
+  video       String     @db.VarChar(255)
   value       Int
-  type        String
+  type        String     @db.VarChar(100)
   Reservas    Reservas[]
 }
 
 model Reservas {
   id        Int      @id @default(autoincrement())
-  name      String
-  number    String
-  email     String
-  startDate DateTime @db.Timestamp(6)
-  endDate   DateTime @db.Timestamp(6)
+  name      String   @db.VarChar(255)
+  number    String   @db.VarChar(100)
+  email     String   @db.VarChar(255)
+  startDate DateTime @db.DateTime(6)
+  endDate   DateTime @db.DateTime(6)
   status    Status   @default(PENDENTE)
-  createdAt DateTime @default(now()) @db.Timestamp(6)
+  createdAt DateTime @default(now()) @db.DateTime(6)
   aluguelId Int
-  Aluguel   Aluguel  @relation(fields: [aluguelId], references: [id])
+  Aluguel   Aluguel  @relation(fields: [aluguelId], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "fk_reserva_aluguel")
+
+  @@index([aluguelId], map: "fk_reserva_aluguel")
 }
 
 model UserAdmin {
   id       Int    @id @default(autoincrement())
-  username String
-  password String
-  email    String @unique
+  username String @db.VarChar(255)
+  password String @db.VarChar(255)
+  email    String @unique(map: "email") @db.VarChar(255)
 }
 
 enum Status {
