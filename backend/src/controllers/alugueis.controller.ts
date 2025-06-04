@@ -43,7 +43,7 @@ export const createAlugueis = async (req: Request, res: Response) => {
         type,
         value: parseInt(value), // Converte para número
         imageP: imageP ? imageP.path.replace(/\\/g, "/").replace("public/", "/") : "", // Remove o prefixo "public/"
-        images: images ? images.map((img) => img.path.replace(/\\/g, "/").replace("public/", "/")) : [], // Remove o prefixo "public/"
+        images: images ? images.map((img) => img.path.replace(/\\/g, "/").replace("public/", "/")).join(",") : "", // Remove o prefixo "public/" e junta em uma string
         video: video ? video.path.replace(/\\/g, "/").replace("public/", "/") : "", // Remove o prefixo "public/"
       },
     });
