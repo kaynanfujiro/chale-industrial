@@ -4,7 +4,7 @@ import { login } from "../controllers/user.controller";
 const router = Router();
 
 // Definição da rota de login
-router.post("/user", async (req, res) => {
+router.post("/login", async (req, res) => {
     await login(req, res);
 });
 
