@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { api } from "../../api"; // ajuste o caminho conforme a estrutura do seu projeto
+import { api } from "../../api";
 
 export const Login = () => {
     const [username, setUsername] = useState("");
